@@ -86,6 +86,7 @@ The following arguments are supported:
   * `require_numbers` (Optional) - Whether you have required users to use at least one number in their password.
   * `require_symbols` (Optional) - Whether you have required users to use at least one symbol in their password.
   * `require_uppercase` (Optional) - Whether you have required users to use at least one uppercase letter in their password.
+  * `temporary_password_validity_days` (Optional) - The user account expiration limit, in days, after which the account is no longer usable.
 
 #### Schema Attributes
 

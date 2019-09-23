@@ -427,6 +427,8 @@ func TestAccAWSCognitoUserPool_withPasswordPolicy(t *testing.T) {
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_numbers", "false"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_symbols", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_uppercase", "false"),
+					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.temporary_password_validity_days", "1"),
+
 				),
 			},
 			{
@@ -438,6 +440,7 @@ func TestAccAWSCognitoUserPool_withPasswordPolicy(t *testing.T) {
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_numbers", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_symbols", "false"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.require_uppercase", "true"),
+					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "password_policy.0.temporary_password_validity_days", "10"),
 				),
 			},
 		},
@@ -1000,6 +1003,7 @@ resource "aws_cognito_user_pool" "pool" {
     require_numbers   = false
     require_symbols   = true
     require_uppercase = false
+    temporary_password_validity_days = 1
   }
 }
 `, name)
@@ -1016,6 +1020,7 @@ resource "aws_cognito_user_pool" "pool" {
     require_numbers   = true
     require_symbols   = false
     require_uppercase = true
+    temporary_password_validity_days = 10
   }
 }
 `, name)
