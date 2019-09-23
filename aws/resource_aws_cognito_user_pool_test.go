@@ -128,7 +128,6 @@ func TestAccAWSCognitoUserPool_withAdminCreateUserConfiguration(t *testing.T) {
 				Config: testAccAWSCognitoUserPoolConfig_withAdminCreateUserConfiguration(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					testAccCheckAWSCognitoUserPoolExists("aws_cognito_user_pool.pool"),
-					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.unused_account_validity_days", "6"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.allow_admin_create_user_only", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_message", "Your username is {username} and temporary password is {####}. "),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_subject", "FooBar {####}"),
@@ -138,7 +137,6 @@ func TestAccAWSCognitoUserPool_withAdminCreateUserConfiguration(t *testing.T) {
 			{
 				Config: testAccAWSCognitoUserPoolConfig_withAdminCreateUserConfigurationUpdated(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
-					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.unused_account_validity_days", "7"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.allow_admin_create_user_only", "false"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_message", "Your username is {username} and constant password is {####}. "),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_subject", "Foo{####}BaBaz"),
@@ -633,7 +631,6 @@ func TestAccAWSCognitoUserPool_update(t *testing.T) {
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "email_verification_subject", "FooBar {####}"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_verification_message", "{####} Baz"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_authentication_message", authenticationMessage),
-					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.unused_account_validity_days", "6"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.allow_admin_create_user_only", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_message", "Your username is {username} and temporary password is {####}. "),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_subject", "FooBar {####}"),
@@ -657,7 +654,6 @@ func TestAccAWSCognitoUserPool_update(t *testing.T) {
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "email_verification_subject", "FooBar {####}"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_verification_message", "{####} Baz"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_authentication_message", updatedAuthenticationMessage),
-					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.unused_account_validity_days", "6"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.allow_admin_create_user_only", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_message", "Your username is {username} and temporary password is {####}. "),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_subject", "FooBar {####}"),
@@ -681,7 +677,6 @@ func TestAccAWSCognitoUserPool_update(t *testing.T) {
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "email_verification_subject", "FooBar {####}"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_verification_message", "{####} Baz"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "sms_authentication_message", updatedAuthenticationMessage),
-					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.unused_account_validity_days", "6"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.allow_admin_create_user_only", "true"),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_message", "Your username is {username} and temporary password is {####}. "),
 					resource.TestCheckResourceAttr("aws_cognito_user_pool.pool", "admin_create_user_config.0.invite_message_template.0.email_subject", "FooBar {####}"),
@@ -780,7 +775,6 @@ resource "aws_cognito_user_pool" "pool" {
 
   admin_create_user_config {
     allow_admin_create_user_only = true
-    unused_account_validity_days = 6
 
     invite_message_template {
       email_message = "Your username is {username} and temporary password is {####}. "
@@ -799,7 +793,6 @@ resource "aws_cognito_user_pool" "pool" {
 
   admin_create_user_config {
     allow_admin_create_user_only = false
-    unused_account_validity_days = 7
 
     invite_message_template {
       email_message = "Your username is {username} and constant password is {####}. "
@@ -1310,7 +1303,6 @@ resource "aws_cognito_user_pool" "pool" {
 
   admin_create_user_config {
     allow_admin_create_user_only = true
-    unused_account_validity_days = 6
 
     invite_message_template {
       email_message = "Your username is {username} and temporary password is {####}. "

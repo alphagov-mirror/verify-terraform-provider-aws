@@ -63,12 +63,6 @@ func resourceAwsCognitoUserPool() *schema.Resource {
 								},
 							},
 						},
-						"unused_account_validity_days": {
-							Type:         schema.TypeInt,
-							Optional:     true,
-							Default:      7,
-							ValidateFunc: validation.IntBetween(0, 90),
-						},
 					},
 				},
 			},
