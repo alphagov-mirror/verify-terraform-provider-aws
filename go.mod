@@ -1,7 +1,7 @@
 module github.com/terraform-providers/terraform-provider-aws
 
 require (
-	github.com/aws/aws-sdk-go v1.23.15
+	github.com/aws/aws-sdk-go v1.24.3
 	github.com/beevik/etree v1.1.0
 	github.com/bflad/tfproviderlint v0.4.0
 	github.com/client9/misspell v0.3.4
@@ -28,3 +28,5 @@ require (
 	k8s.io/klog v0.1.0 // indirect
 	sigs.k8s.io/yaml v1.1.0 // indirect
 )
+
+replace git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
